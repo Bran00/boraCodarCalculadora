@@ -1,0 +1,110 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  background-color: hsla(246, 100%, 21%, 0.77);
+  font-size: 62.5%;
+  height: 100vh;
+}
+
+body * {
+  font-family: 'Rubik', sans-serif;
+}
+
+main {
+  font-size: 2.4rem;
+  color: hsla(0, 0%, 92%, 1);
+  display: grid;
+  grid-template-rows: 1fr 3fr;
+  margin: auto;
+  width: 37.6rem;
+  height: 58.6rem;
+  background-color: hsla(254, 13%, 19%, 1);
+  margin-top: 25%;
+  padding: 3rem;
+  border-radius: 4.8rem;
+  box-shadow: 0px -4px 5px 0px hsla(0, 0%, 0%, 0.22) inset;
+  box-shadow: 0px 6px 8px 0px hsla(0, 0%, 100%, 0.1) inset;
+  box-shadow: 0px 8px 17px 0px hsla(0, 0%, 0%, 0.29);
+  box-shadow: 0px 30px 30px 0px hsla(0, 0%, 0%, 0.26);
+  box-shadow: 0px 68px 41px 0px hsla(0, 0%, 0%, 0.15);
+  box-shadow: 0px 120px 48px 0px hsla(0, 0%, 0%, 0.04);
+  box-shadow: 0px 188px 52px 0px hsla(0, 0%, 0%, 0.01);
+  box-shadow: 0px 4px 4px 0px hsla(0, 0%, 0%, 0.25);
+}
+
+header {
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+span {
+  color: #6B6B6B;
+}
+
+header #numbersSelected {
+  text-align: end;
+  font-size: 2rem;
+  color: #6B6B6B;
+  letter-spacing: .6rem;
+  background-color: transparent;
+  border: none;
+}
+
+header #resultScreen {
+  display: flex;
+  justify-content: space-between;
+  font-size: 3.6rem;
+}
+
+#buttonsCalculator {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+#buttonsCalculator > button {
+  text-align: center;
+  font-size: 2rem;
+  color: hsla(0, 0%, 92%, 1);
+  background: transparent;
+  box-shadow: 0px 11px 7px rgba(0, 0, 0, 0.01),
+    0px 7px 7px rgba(0, 0, 0, 0.04), 0px 4px 6px rgba(0, 0, 0, 0.1),
+    0px 2px 4px rgba(0, 0, 0, 0.26), 0px 0px 2px rgba(0, 0, 0, 0.29),
+    inset 0px 2px 3px rgba(255, 255, 255, 0.06);
+  border: 1px solid hsla(0, 0%, 0%, 0.05);
+  width: 6.4rem;
+  height: 6.4rem;
+  padding: 1.5rem;
+  border-radius: 999px;
+}
+
+#buttonsCalculator > button:hover,
+.operations:hover {
+  background-color: hsla(263, 50%, 61%, 1) !important
+}
+
+.operations {
+  background-color: hsla(263, 50%, 31%, 1) !important;
+}
+
+.hidden {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+[data-button="="] {
+  background-color: hsla(263, 50%, 51%, 1) !important;
+}
+
