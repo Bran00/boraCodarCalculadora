@@ -11,6 +11,7 @@ let number = 0;
 let result = 0;
 let negative = -1;
 let operation;
+let currentOperation = '';
 let resets = ['=', '%', '+/-', 'CE', 'c']
 let operations = ['+', '-', '*', '÷', ',']
 
@@ -18,12 +19,10 @@ let operations = ['+', '-', '*', '÷', ',']
 function optionClickEvent(e) {
   let value = (e.target.getAttribute('data-button'))
   
-  
   if(resets.includes(value)) {
   screenSelected.textContent;
-  } 
-  else if(operations.includes(operation) && operations.includes(value)) { screenSelected.textContent = screenSelected.textContent.slice(0, -2)
-    screenResult.textContent = 0
+  } else if(currentOperation === value) {
+  screenSelected.textContent;
   }
   else {
   screenSelected.textContent += value
@@ -36,7 +35,13 @@ function calc(value) {
   if(value === '+') {
   operation = '+'
   result = (Number(number) + result)
-  number = 0;
+  if(number == 0) {
+    currentOperation = operation
+  } else {
+    currentOperation = ''
+  }
+  console.log(result )
+  number = 0
 } 
 
   else if(value === '-') {
@@ -78,6 +83,7 @@ function calc(value) {
 
   else if(value === '=') {
   calc(operation)
+  operation = ''
   screenSelected.textContent = result
 }
 
@@ -105,10 +111,10 @@ function calc(value) {
   else if(value === '+/-') {
   operation = '+/-'
   result = Number(number) * negative;
-  console.log(result)
 }
   else if(Number(value) !== NaN){
    number += value
   }
+  
   screenResult.textContent = result
 }
