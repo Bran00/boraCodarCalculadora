@@ -1,18 +1,19 @@
 document.querySelectorAll("button[data-button]").forEach(item => {
   item.addEventListener("click", optionClickEvent)
-}, {once : true});
+});
 
 
 
 let screenSelected = document.querySelector("#numbersSelected")
 let screenResult = document.querySelector("#resultScreen > p") 
+let screenOperation = document.querySelector("#operation") 
 
 let number = 0;
 let result = 0;
 let negative = -1;
 let operation;
 let currentOperation = '';
-let resets = ['=', '%', '+/-', 'CE', 'c']
+let resets = ['=', '%', '+/-', 'c', 'CE']
 let operations = ['+', '-', '*', '÷', ',']
 
 
@@ -20,12 +21,12 @@ function optionClickEvent(e) {
   let value = (e.target.getAttribute('data-button'))
   
   if(resets.includes(value)) {
-  screenSelected.textContent;
-  } else if(currentOperation === value) {
-  screenSelected.textContent;
-  }
-  else {
-  screenSelected.textContent += value
+   screenOperation;
+  } else if(operations.includes(value)) {
+    screenOperation.textContent = value
+    screenSelected.textContent = ''
+  } else if (number !== NaN){
+    screenSelected.textContent += value
   }
   calc(value)
 }
@@ -34,24 +35,23 @@ function optionClickEvent(e) {
 function calc(value) {
   if(value === '+') {
   operation = '+'
-  result = (Number(number) + result)
-  if(number == 0) {
-    currentOperation = operation
-  } else {
-    currentOperation = ''
-  }
-  console.log(result )
+  result = Number(number) + Number(result)
   number = 0
+  
 } 
 
   else if(value === '-') {
   operation = '-'
-  result = Number(result)
   number = Number(number)
-  result = number - result
-  if (result < number ) {
-    result = result * (-1)
+  result = Number(result)
+  if(result === 0) {
+  result = number
+  } else if( result === 0 && operation !== '') {
+  result = number * (-1)
+  } else if( result !== 0 ) {
+    result = result - number
   }
+  console.log(result)
   number = 0
 }
 
@@ -74,7 +74,6 @@ function calc(value) {
   operation = '÷'
   if(result === 0) {
     result = Number(number);
-    number = 0;
   } else {
     result = result / Number(number)
   }
@@ -94,9 +93,10 @@ function calc(value) {
 }
   else if(value === 'CE') {
   result = 0
+  screenOperation.textContent = '='
   screenSelected.textContent = ''
   number = 0;
-  operation = '';
+  operation = '=';
 }
   else if(value === 'c') {
   screenSelected.textContent = screenSelected.textContent.slice(0, -1);
@@ -115,6 +115,6 @@ function calc(value) {
   else if(Number(value) !== NaN){
    number += value
   }
-  
+
   screenResult.textContent = result
 }
