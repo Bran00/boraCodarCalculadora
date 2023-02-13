@@ -12,9 +12,10 @@ let number = 0;
 let result = 0;
 let negative = -1;
 let operation;
+let point = '';
 let currentOperation = '';
-let resets = ['=', '%', '+/-', 'c', 'CE']
-let operations = ['+', '-', '*', '÷', ',']
+let resets = ['+/-', 'c', 'CE']
+let operations = ['+', '-', 'x', '÷', '=', '%']
 
 
 function optionClickEvent(e) {
@@ -22,9 +23,12 @@ function optionClickEvent(e) {
   
   if(resets.includes(value)) {
    screenOperation;
+  } else if(value === point) {
+    screenOperation.textContent;
   } else if(operations.includes(value)) {
     screenOperation.textContent = value
     screenSelected.textContent = ''
+    point = ''
   } else if (number !== NaN){
     screenSelected.textContent += value
   }
@@ -51,39 +55,41 @@ function calc(value) {
   } else if( result !== 0 ) {
     result = result - number
   }
-  console.log(result)
   number = 0
 }
 
   else if(value === 'x') {
   operation = 'x'
-  console.log(result)
   if(result === 0) {
     result = 1
     number = Number(number)
     result = result * number
     number = 0;
-  } else {
+  } else if(result !== 0 && number !== 0) {
     number = Number(number)
     result = result * number
+    number = 0;
   }
-  number = 0;
 } 
 
   else if(value === '÷') {
   operation = '÷'
   if(result === 0) {
     result = Number(number);
+  } else if(number === 0) {
+    result = result
   } else {
-    result = result / Number(number)
+    result = result / number
+    if(result === Infinity) {
+      alert("Valor Infinito")
+    }
   }
   number = 0;
 }
 
   else if(value === '=') {
   calc(operation)
-  operation = ''
-  screenSelected.textContent = result
+  operation = ' '
 }
 
   else if(value === '%') {
@@ -97,24 +103,27 @@ function calc(value) {
   screenSelected.textContent = ''
   number = 0;
   operation = '=';
+  point = '';
 }
+
   else if(value === 'c') {
   screenSelected.textContent = screenSelected.textContent.slice(0, -1);
-  operation = ''
-  number = 0;
+  number = number.slice(0, -1);
   value = 0;
 }
 
-  else if(value === ',') {
-  number = Number(res.value.tofixed(2));
+  else if(value === '.') {
+  point = value
+  number += value
 }
+
   else if(value === '+/-') {
   operation = '+/-'
   result = Number(number) * negative;
+  number = 0
 }
   else if(Number(value) !== NaN){
    number += value
-  }
-
+} 
   screenResult.textContent = result
 }
